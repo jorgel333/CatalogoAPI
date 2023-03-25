@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using APICatalogo.Repository;
 using APICatalogo.DTOs;
 using AutoMapper;
+using APICatalogo.Pagination;
 
 namespace APICatalogo.Controllers
 {
@@ -30,9 +31,9 @@ namespace APICatalogo.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<ProductDTO>> Get()
+        public ActionResult<IEnumerable<ProductDTO>> Get([FromQuery] ProductsParameters productsParameters)
         {
-            var product = _uof.ProductRepository.Get().ToList();
+            var product = _uof.ProductRepository.GetProducts(productsParameters).ToList();
             var productDto = _mapper.Map<List<ProductDTO>>(product);
 
             if (product is null)
@@ -72,7 +73,7 @@ namespace APICatalogo.Controllers
         public ActionResult Put(int id, ProductDTO productDto)
         {
 
-            if (id != productDto.Id)
+            if (id != productDto.Id) 
             {
                 return BadRequest();
             }
