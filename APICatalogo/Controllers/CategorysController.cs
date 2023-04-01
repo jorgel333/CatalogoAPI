@@ -4,6 +4,8 @@ using APICatalogo.Models;
 using APICatalogo.Pagination;
 using APICatalogo.Repository;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +14,8 @@ using Newtonsoft.Json;
 namespace APICatalogo.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class CategorysController : ControllerBase
     {
         private readonly IUnityOfWork _uof;
