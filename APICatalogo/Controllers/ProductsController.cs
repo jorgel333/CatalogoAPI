@@ -12,8 +12,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace APICatalogo.Controllers
 {
+    [ApiVersion("1.0")]
     [ApiController]
-    [Route("api/[Controller]")]
+    [Route("api/{v:apiVersion}/[Controller]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class ProductsController : ControllerBase
     {

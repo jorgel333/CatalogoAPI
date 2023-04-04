@@ -13,8 +13,9 @@ using Newtonsoft.Json;
 
 namespace APICatalogo.Controllers
 {
+    [ApiVersion("1.0")]
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/{v:apiVersion}/[controller]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class CategorysController : ControllerBase
     {
